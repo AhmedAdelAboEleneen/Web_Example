@@ -1,4 +1,4 @@
-package test;
+package Test;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,6 +13,7 @@ public class TestBase {
 
     public static WebDriver driver;
 
+    @Test
     @BeforeTest
     @Parameters({"browser"})
     public void startDriver(@Optional("firefox") String browserName) {
@@ -21,12 +22,12 @@ public class TestBase {
 
             // For Windows
 
-            // System.setProperty("webdriver.gecko.driver",
-            // System.getProperty("user.dir") + "/drivers/geckodriver.exe");
+             System.setProperty("webdriver.gecko.driver",
+             System.getProperty("user.dir") + "/drivers/geckodriver.exe");
 
-            // For Linux
+           /*  For Linux
             System.setProperty("webdriver.gecko.driver",
-                    System.getProperty("user.dir") + "/drivers/geckodriver");
+                    System.getProperty("user.dir") + "/drivers/geckodriver");*/
 
             driver = new FirefoxDriver();
 
@@ -41,10 +42,13 @@ public class TestBase {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         // Stage Link
-        driver.navigate().to("Link stage here");
+        driver.navigate().to("https://www.google.com/");
 
         // Demo Link
         // driver.navigate().to("Link demo here");
+
+        // Live Link
+        // driver.navigate().to("Link live here");
     }
 
     @AfterTest

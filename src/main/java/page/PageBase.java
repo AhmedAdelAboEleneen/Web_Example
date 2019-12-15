@@ -1,4 +1,4 @@
-package pages;
+package page;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -16,14 +16,6 @@ public class PageBase {
     public PageBase(WebDriver driver) {
 
         PageFactory.initElements(driver, this);
-    }
-
-    public static void clickButton(WebElement button) {
-        button.click();
-    }
-
-    public static void setTextElementText(WebElement textElement, String value) {
-        textElement.sendKeys(value);
     }
 
 }
