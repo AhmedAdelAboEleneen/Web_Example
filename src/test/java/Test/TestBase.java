@@ -13,7 +13,7 @@ public class TestBase {
 
     public static WebDriver driver;
 
-    @Test
+   
     @BeforeTest
     @Parameters({"browser"})
     public void startDriver(@Optional("firefox") String browserName) {
@@ -42,7 +42,7 @@ public class TestBase {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         // Stage Link
-        driver.navigate().to("https://www.google.com/");
+        driver.navigate().to("link Stage here");
 
         // Demo Link
         // driver.navigate().to("Link demo here");
