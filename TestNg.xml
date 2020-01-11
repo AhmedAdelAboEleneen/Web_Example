@@ -1,6 +1,4 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Asala Dashboard Regression Suite" thread-count="7" verbose="7">
+<suite name="Regression Suite" thread-count="7" verbose="7">
     <parameter name="browser" value="firefox"></parameter>
-
-
 </suite>

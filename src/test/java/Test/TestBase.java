@@ -1,5 +1,6 @@
 package Test;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -13,48 +14,28 @@ public class TestBase {
 
     public static WebDriver driver;
 
-   
     @BeforeTest
     @Parameters({"browser"})
     public void startDriver(@Optional("firefox") String browserName) {
 
         if (browserName.equalsIgnoreCase("firefox")) {
-
-            // For Windows
-
-             System.setProperty("webdriver.gecko.driver",
-             System.getProperty("user.dir") + "/drivers/geckodriver.exe");
-
-           /*  For Linux
-            System.setProperty("webdriver.gecko.driver",
-                    System.getProperty("user.dir") + "/drivers/geckodriver");*/
-
+            WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver();
 
         } else if (browserName.equalsIgnoreCase("chrome")) {
-
-            System.setProperty("webdriver.chrome.driver",
-                    System.getProperty("user.dir") + "/drivers/chromedriver");
+            WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
         }
-
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        // Stage Link
-        driver.navigate().to("link Stage here");
-
-        // Demo Link
-        // driver.navigate().to("Link demo here");
-
-        // Live Link
-        // driver.navigate().to("Link live here");
+        // Link
+        driver.navigate().to("");
     }
 
     @AfterTest
     public void stopDriver() {
-
-        driver.quit();
+        driver.close();
     }
 
     // Take Screenshot when test case fail and add it in screenshot folder
@@ -62,7 +43,6 @@ public class TestBase {
     public void screenShootsOnFailure(ITestResult result) {
 
         if (result.getStatus() == ITestResult.FAILURE) {
-
             System.out.println("Failed!");
             System.out.println("Taking ScreenShot.......");
             Helper.caputreScreenShoot(driver, result.getName());
